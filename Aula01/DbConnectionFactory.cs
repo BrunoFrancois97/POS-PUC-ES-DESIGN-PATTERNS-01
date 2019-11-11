@@ -1,31 +1,51 @@
-﻿namespace Aula01
+﻿using System;
+
+namespace Aula01
 {
     public class DbConnectionFactory
     {
-        //TODO: maybe use a builder instead
-        public DbConnection CreateDbConnection(DataSource dataSource, string connectionString)
+        public DbConnection CreateDbConnection(DataBaseType dataBaseType, string connectionString)
         {
-            switch (dataSource)
+            switch (dataBaseType)
             {
-                case DataSource.JSON:
-                   return CreateConnectionFromJSON(connectionString);
+                case DataBaseType.SqlServer:
+                    return CreateConnectionToSqlServer(connectionString);
 
-                case DataSource.AmbientVariable:
-                    //TODO: Create Factory Method
-                    return new DbConnection();
+                case DataBaseType.Oracle:
+                    return CreateConnectionToOracle(connectionString);
 
-                case DataSource.Message:
-                    //TODO: Create Factory Method
-                    return new DbConnection();
+                case DataBaseType.Postgre:
+                    return CreateConnectionToPostGre(connectionString);
 
                 default:
-                    return new DbConnection();
+                    throw new Exception("Invalid DataBase Type");
             }
         }
 
-        private DbConnection CreateConnectionFromJSON(string connectionString)
+        private DbConnection CreateConnectionToSqlServer(string connectionString)
         {
-            return new DbConnection();
+            var data = connectionString.Split(';');
+            var dbInfo = new DbInfo
+            {
+                Host = data[0],
+                Port = int.Parse(data[1]),
+                UserName = data[2],
+                Password = data[3],
+                DbName = data[4],
+            };
+            return DbConnection.CreateConnection(dbInfo);
+        }
+
+        private DbConnection CreateConnectionToOracle(string connectionString)
+        {
+            var dbInfo = new DbInfo();
+            return DbConnection.CreateConnection(dbInfo);
+        }
+
+        private DbConnection CreateConnectionToPostGre(string connectionString)
+        {
+            var dbInfo = new DbInfo();
+            return DbConnection.CreateConnection(dbInfo);
         }
     }
 }

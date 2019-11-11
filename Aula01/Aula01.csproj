@@ -43,11 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataReaders\Contract\IFileDataReader.cs" />
-    <Compile Include="DataReaders\Impl\JSONDataReader.cs" />
-    <Compile Include="DataSource.cs" />
+    <Compile Include="DataReaders\JsonDataReader.cs" />
+    <Compile Include="DataBaseType.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="DbConnectionFactory.cs" />
+    <Compile Include="DbInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
