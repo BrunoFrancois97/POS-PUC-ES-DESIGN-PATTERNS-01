@@ -43,11 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\OracleConfiguration.cs" />
+    <Compile Include="Configurations\PostgreConfiguration.cs" />
+    <Compile Include="Configurations\SqlServerConfiguration.cs" />
+    <Compile Include="DataReaders\AmbientVariableDataReader.cs" />
     <Compile Include="DataReaders\JsonDataReader.cs" />
     <Compile Include="DataBaseType.cs" />
     <Compile Include="DbConnection.cs" />
     <Compile Include="DbConnectionFactory.cs" />
-    <Compile Include="DbInfo.cs" />
+    <Compile Include="DbConfiguration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

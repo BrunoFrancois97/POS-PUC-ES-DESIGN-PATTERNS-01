@@ -1,35 +1,42 @@
-﻿namespace Aula01
+﻿using Aula01.Configurations;
+
+namespace Aula01
 {
     public sealed class DbConnection
     {
-        private static DbConnection me;
-        private static readonly object padlock = new object();
+        public string Host { get; }
+        public int Port { get; }
+        public string Username { get; }
+        public string Password { get; }
+        public string DbName { get; }
 
-        private readonly string Host;
-        private readonly int Port;
-        private readonly string Username;
-        private readonly string Password;
-        private readonly string DbName;
-
-        private DbConnection(DbConfiguration dbConfiguration)
+        public DbConnection(SqlServerConfiguration sqlServerConfiguration)
         {
-            Host = dbConfiguration.Host;
-            Port = dbConfiguration.Port;
-            Username = dbConfiguration.UserName;
-            Password = dbConfiguration.Password;
-            DbName = dbConfiguration.DbName;
+            Host = sqlServerConfiguration.Host;
+            Port = sqlServerConfiguration.Port;
+            Username = sqlServerConfiguration.Username;
+            Password = sqlServerConfiguration.Password;
+            DbName = sqlServerConfiguration.DbName;
         }
 
-        public static DbConnection CreateConnection(DbConfiguration dbConfiguration)
+        public DbConnection(PostgreConfiguration sqlServerConfiguration)
         {
-            if (me == null)
-            {
-                lock (padlock)
-                {
-                    me = new DbConnection(dbConfiguration);
-                }
-            }
-            return me;
+            Host = sqlServerConfiguration.HostName;
+            Port = sqlServerConfiguration.PortNumber;
+            Username = sqlServerConfiguration.User;
+            Password = sqlServerConfiguration.Password;
+            DbName = sqlServerConfiguration.DatabaseName;
         }
+
+        public DbConnection(OracleConfiguration sqlServerConfiguration)
+        {
+            Host = sqlServerConfiguration.Host;
+            Port = sqlServerConfiguration.PortNumber;
+            Username = sqlServerConfiguration.User;
+            Password = sqlServerConfiguration.Password;
+            DbName = sqlServerConfiguration.DbName;
+        }
+
+
     }
 }

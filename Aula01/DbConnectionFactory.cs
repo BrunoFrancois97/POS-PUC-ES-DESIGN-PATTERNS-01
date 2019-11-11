@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aula01.Configurations;
+using System;
 
 namespace Aula01
 {
@@ -24,28 +25,20 @@ namespace Aula01
 
         private DbConnection CreateConnectionToSqlServer(string connectionString)
         {
-            var data = connectionString.Split(';');
-            var dbConfiguration = new DbConfiguration
-            {
-                Host = data[0],
-                Port = int.Parse(data[1]),
-                UserName = data[2],
-                Password = data[3],
-                DbName = data[4],
-            };
-            return DbConnection.CreateConnection(dbConfiguration);
+            var sqlServerConfiguration = SqlServerConfiguration.CreateConfiguration(connectionString);
+            return new DbConnection(sqlServerConfiguration);
         }
 
         private DbConnection CreateConnectionToOracle(string connectionString)
         {
-            var dbInfo = new DbConfiguration();
-            return DbConnection.CreateConnection(dbInfo);
+            var oracleConfiguration = OracleConfiguration.CreateConfiguration(connectionString);
+            return new DbConnection(oracleConfiguration);
         }
 
         private DbConnection CreateConnectionToPostGre(string connectionString)
         {
-            var dbInfo = new DbConfiguration();
-            return DbConnection.CreateConnection(dbInfo);
+            var oracleConfiguration = PostgreConfiguration.CreateConfiguration(connectionString);
+            return new DbConnection(oracleConfiguration);
         }
     }
 }

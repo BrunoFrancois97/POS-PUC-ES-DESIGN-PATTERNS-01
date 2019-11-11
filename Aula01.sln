@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula01", "Aula01\Aula01.csproj", "{17E158E9-8625-4BAE-9588-683B70D009B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula01-Test", "Aula01-Test\Aula01-Test.csproj", "{E5F525E2-6471-4E65-9CA8-8ECFCBDF2858}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula01.Test", "Aula01-Test\Aula01.Test.csproj", "{E5F525E2-6471-4E65-9CA8-8ECFCBDF2858}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

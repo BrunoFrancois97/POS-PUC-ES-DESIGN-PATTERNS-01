@@ -1,22 +1,23 @@
-﻿using Aula01;
-using Aula01.DataReaders;
+﻿using Aula01.DataReaders;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Aula01_Test
+namespace Aula01.Test
 {
     [TestClass]
     public class DbConnectionTests
     {
         private readonly JsonDataReader jsonDataReader;
+        private readonly AmbientVariableDataReader ambientVariableDataReader;
         private readonly DbConnectionFactory dbConnectionFactory;
 
         public DbConnectionTests()
         {
             jsonDataReader = new JsonDataReader();
             dbConnectionFactory = new DbConnectionFactory();
+            ambientVariableDataReader = new AmbientVariableDataReader();
         }
         [TestMethod]
-        public void CreateConnection_FromJSON()
+        public void CreateConnection_FromJSON_ToSqlServer()
         {
             var connectionString = jsonDataReader.GetConnectionString("C:\\Users\\connection.json");
             var dbConnection = dbConnectionFactory.CreateDbConnection(DataBaseType.SqlServer, connectionString);
@@ -24,18 +25,10 @@ namespace Aula01_Test
         }
 
         [TestMethod]
-        public void CreateConnection_FromAmbientVariable()
+        public void CreateConnection_FromAmbientVariabl_ToOracle()
         {
-            var connectionString = jsonDataReader.GetConnectionString("");
+            var connectionString = ambientVariableDataReader.GetConnectionString();
             var dbConnection = dbConnectionFactory.CreateDbConnection(DataBaseType.Oracle, connectionString);
-            Assert.IsNotNull(dbConnection);
-        }
-
-        [TestMethod]
-        public void CreateConnection_FromMessage()
-        {
-            var connectionString = jsonDataReader.GetConnectionString("");
-            var dbConnection = dbConnectionFactory.CreateDbConnection(DataBaseType.Postgre, connectionString);
             Assert.IsNotNull(dbConnection);
         }
     }
