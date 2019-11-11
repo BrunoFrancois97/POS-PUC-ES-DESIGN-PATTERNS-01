@@ -25,7 +25,7 @@ namespace Aula01
         private DbConnection CreateConnectionToSqlServer(string connectionString)
         {
             var data = connectionString.Split(';');
-            var dbInfo = new DbInfo
+            var dbConfiguration = new DbConfiguration
             {
                 Host = data[0],
                 Port = int.Parse(data[1]),
@@ -33,18 +33,18 @@ namespace Aula01
                 Password = data[3],
                 DbName = data[4],
             };
-            return DbConnection.CreateConnection(dbInfo);
+            return DbConnection.CreateConnection(dbConfiguration);
         }
 
         private DbConnection CreateConnectionToOracle(string connectionString)
         {
-            var dbInfo = new DbInfo();
+            var dbInfo = new DbConfiguration();
             return DbConnection.CreateConnection(dbInfo);
         }
 
         private DbConnection CreateConnectionToPostGre(string connectionString)
         {
-            var dbInfo = new DbInfo();
+            var dbInfo = new DbConfiguration();
             return DbConnection.CreateConnection(dbInfo);
         }
     }

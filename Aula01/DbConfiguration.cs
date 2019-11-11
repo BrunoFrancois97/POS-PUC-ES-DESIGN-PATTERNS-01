@@ -1,6 +1,6 @@
 ﻿namespace Aula01
 {
-    public class DbInfo
+    public class DbConfiguration
     {
         public string Host { get; set; }
         public int Port { get; set; }

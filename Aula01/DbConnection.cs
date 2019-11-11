@@ -11,22 +11,22 @@
         private readonly string Password;
         private readonly string DbName;
 
-        private DbConnection(DbInfo dbInfo)
+        private DbConnection(DbConfiguration dbConfiguration)
         {
-            Host = dbInfo.Host;
-            Port = dbInfo.Port;
-            Username = dbInfo.UserName;
-            Password = dbInfo.Password;
-            DbName = dbInfo.DbName;
+            Host = dbConfiguration.Host;
+            Port = dbConfiguration.Port;
+            Username = dbConfiguration.UserName;
+            Password = dbConfiguration.Password;
+            DbName = dbConfiguration.DbName;
         }
 
-        public static DbConnection CreateConnection(DbInfo dbInfo)
+        public static DbConnection CreateConnection(DbConfiguration dbConfiguration)
         {
             if (me == null)
             {
                 lock (padlock)
                 {
-                    me = new DbConnection(dbInfo);
+                    me = new DbConnection(dbConfiguration);
                 }
             }
             return me;
