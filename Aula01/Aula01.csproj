@@ -50,6 +50,7 @@
     <Compile Include="DataReaders\JsonDataReader.cs" />
     <Compile Include="DataBaseType.cs" />
     <Compile Include="DbConnection.cs" />
+    <Compile Include="DbConnectionBuilder.cs" />
     <Compile Include="DbConnectionFactory.cs" />
     <Compile Include="DbConfiguration.cs" />
     <Compile Include="Program.cs" />

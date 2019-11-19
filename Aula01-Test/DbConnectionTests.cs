@@ -7,15 +7,16 @@ namespace Aula01.Test
     public class DbConnectionTests
     {
         private readonly JsonDataReader jsonDataReader;
-        private readonly AmbientVariableDataReader ambientVariableDataReader;
         private readonly DbConnectionFactory dbConnectionFactory;
+        private readonly DbConnectionBuilder dbConnectionBuilder;
 
         public DbConnectionTests()
         {
             jsonDataReader = new JsonDataReader();
             dbConnectionFactory = new DbConnectionFactory();
-            ambientVariableDataReader = new AmbientVariableDataReader();
+            dbConnectionBuilder = new DbConnectionBuilder();
         }
+
         [TestMethod]
         public void CreateConnection_FromJSON_ToSqlServer()
         {
@@ -25,11 +26,19 @@ namespace Aula01.Test
         }
 
         [TestMethod]
-        public void CreateConnection_FromAmbientVariabl_ToOracle()
+        public void Execute_FromJSON_ToSqlServer()
         {
-            var connectionString = ambientVariableDataReader.GetConnectionString();
-            var dbConnection = dbConnectionFactory.CreateDbConnection(DataBaseType.Oracle, connectionString);
-            Assert.IsNotNull(dbConnection);
+            var connectionString = jsonDataReader.GetConnectionString("C:\\Users\\connection.json");
+            var dbConnection = dbConnectionFactory.CreateDbConnection(DataBaseType.SqlServer, connectionString);
+
+            var query = dbConnectionBuilder
+                .WithConnection(dbConnection)
+                .Ping()
+                .TestConnection()
+                .Execute("select * from table");
+
+            Assert.AreEqual("select * from table", query);
         }
+
     }
 }

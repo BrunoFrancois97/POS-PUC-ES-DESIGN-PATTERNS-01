@@ -37,6 +37,10 @@ namespace Aula01
             DbName = sqlServerConfiguration.DbName;
         }
 
+        public string Execute(string sqlQuery)
+        {
+            return sqlQuery;
+        }
 
     }
 }
